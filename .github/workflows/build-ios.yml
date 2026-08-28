@@ -18,12 +18,12 @@ jobs:
       - name: Build Xcode Archive & Package IPA
         run: |
           cd Build
-          # Build app without code signing using Xcode
-          xcodebuild build -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -destination 'generic/platform=iOS' -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          # Build app into ./output directory using Xcode
+          xcodebuild build -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -destination 'generic/platform=iOS' -configuration Release -derivedDataPath output CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
           
-          # Package into .ipa
+          # Package .app into .ipa
           mkdir -p Payload
-          cp -r build/Release-iphoneos/*.app Payload/
+          cp -r output/Build/Products/Release-iphoneos/*.app Payload/
           zip -r RogueTower.ipa Payload
           mv RogueTower.ipa ../
 
