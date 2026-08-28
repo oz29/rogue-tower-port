@@ -139,6 +139,10 @@ public class CardManager : MonoBehaviour
 
 	public void ActivateCard(int index)
 	{
+		if (RunSaveManager.instance != null && cards[index] != null)
+		{
+			RunSaveManager.instance.RecordPickedCard(cards[index].title);
+		}
 		cards[index].Upgrade();
 		foreach (UpgradeCard unlock in cards[index].unlocks)
 		{

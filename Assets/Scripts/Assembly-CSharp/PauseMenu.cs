@@ -80,6 +80,44 @@ public class PauseMenu : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		if (pauseMenu != null)
+		{
+			AddSaveButtonToPauseMenu();
+		}
+	}
+
+	private void AddSaveButtonToPauseMenu()
+	{
+		Button originalBtn = pauseMenu.GetComponentInChildren<Button>();
+		if (originalBtn == null) return;
+
+		GameObject saveBtnObj = Instantiate(originalBtn.gameObject, originalBtn.transform.parent);
+		saveBtnObj.name = "SaveAndQuitButton";
+		saveBtnObj.transform.SetSiblingIndex(originalBtn.transform.GetSiblingIndex() + 1);
+
+		Button btn = saveBtnObj.GetComponent<Button>();
+		btn.onClick.RemoveAllListeners();
+		btn.onClick.AddListener(SaveAndQuit);
+
+		Text txt = saveBtnObj.GetComponentInChildren<Text>();
+		if (txt != null)
+		{
+			txt.text = "Guardar y Salir";
+		}
+	}
+
+	public void SaveAndQuit()
+	{
+		RunSaveManager.SaveCurrentRun();
+		Time.timeScale = 1f;
+		if (LevelLoader.instance != null)
+		{
+			LevelLoader.instance.LoadLevel("MainMenu");
+		}
+	}
+
 	public void Pause()
 	{
 		paused = true;

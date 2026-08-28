@@ -93,6 +93,10 @@ public class GameManager : MonoBehaviour
 		{
 			base.gameObject.AddComponent<MobileHUD>();
 		}
+		if (Object.FindObjectOfType<RunSaveManager>() == null)
+		{
+			base.gameObject.AddComponent<RunSaveManager>();
+		}
 		gameMode = PlayerPrefs.GetInt("GameMode", 1);
 		if (gameMode == 1)
 		{
@@ -339,6 +343,15 @@ public class GameManager : MonoBehaviour
 		{
 			AchievementManager.instance.UnlockAchievement("TowerHealth30");
 		}
+		if (RunSaveManager.instance != null)
+		{
+			RunSaveManager.instance.TryRestoreRun();
+		}
+	}
+
+	public void UpdateHealthBar()
+	{
+		SetHealthBar();
 	}
 
 	private void SetHealthBar()
@@ -397,6 +410,7 @@ public class GameManager : MonoBehaviour
 
 	private void GameOver()
 	{
+		RunSaveManager.DeleteSavedRun();
 		gameOverMenu.SetActive(value: true);
 		DamageTracker.instance.DisplayDamageTotals();
 		int num = NaturalSum(SpawnManager.instance.level - 1) * gameMode;
@@ -433,6 +447,7 @@ public class GameManager : MonoBehaviour
 
 	public void Victory()
 	{
+		RunSaveManager.DeleteSavedRun();
 		AchievementManager.instance.CheckTowerTypesVictory();
 		victoryScreen.SetActive(value: true);
 		DamageTracker.instance.DisplayDamageTotals();

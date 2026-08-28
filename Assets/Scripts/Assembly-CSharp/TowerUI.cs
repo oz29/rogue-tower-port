@@ -245,6 +245,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.BuyHealthLevel();
 		SetStats(myTower);
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void BuyArmorLevel()
@@ -252,6 +253,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.BuyArmorLevel();
 		SetStats(myTower);
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void BuyShieldLevel()
@@ -259,6 +261,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.BuyShieldLevel();
 		SetStats(myTower);
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void TogglePriorityUp(int index)
@@ -266,6 +269,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.TogglePriority(index, 1);
 		priorityTexts[index].text = myTower.priorities[index].ToString();
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void TogglePriorityDown(int index)
@@ -273,6 +277,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.TogglePriority(index, -1);
 		priorityTexts[index].text = myTower.priorities[index].ToString();
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void DemolishTower()
@@ -280,6 +285,7 @@ public class TowerUI : MonoBehaviour
 		SFXManager.instance.ButtonClick();
 		myTower.Demolish();
 		CloseUI();
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	public void CloseUI()

@@ -202,6 +202,10 @@ public class TileManager : MonoBehaviour
 		intArray[posX, posY] = 1;
 		TerrainTile component = obj.GetComponent<TerrainTile>();
 		tileArray[posX, posY] = component;
+		if (RunSaveManager.instance != null)
+		{
+			RunSaveManager.instance.RecordSpawnedTile(posX, posY, eulerAngle, original.name);
+		}
 		component.SetCardinalDirections();
 		UpdateIntArrayFromTile(component, posX, posY);
 		TerrainTile terrainTile = null;

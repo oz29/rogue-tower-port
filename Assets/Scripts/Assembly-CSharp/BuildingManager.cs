@@ -97,6 +97,7 @@ public class BuildingManager : MonoBehaviour
 		gameObject.GetComponent<IBuildable>()?.SetStats();
 		Object.Instantiate(placementFXObject, gameObject.transform.position + Vector3.up * 0.333f, Quaternion.identity);
 		buildSpotAvailable = SamplePoint();
+		RunSaveManager.SaveCurrentRun();
 	}
 
 	private bool BuildingCheck()

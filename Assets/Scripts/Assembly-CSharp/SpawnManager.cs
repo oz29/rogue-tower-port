@@ -160,6 +160,7 @@ public class SpawnManager : MonoBehaviour
 		int num = PlayerPrefs.GetInt("XP", 0);
 		PlayerPrefs.SetInt("XP", num + level * GameManager.instance.gameMode);
 		scoreText.text = "Score: " + GameManager.instance.NaturalSum(level) * GameManager.instance.gameMode;
+		RunSaveManager.SaveCurrentRun();
 		if (level >= lastLevel)
 		{
 			GameManager.instance.Victory();
