@@ -14331,6 +14331,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonSerializerProxy_set_Context_m4BD1421
 		return;
 	}
 }
+// Newtonsoft.Json.Formatting Newtonsoft.Json.Serialization.JsonSerializerProxy::get_Formatting()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t JsonSerializerProxy_get_Formatting_mF01112BD0C0A193D0C7E167BC82C3F4A963BAC9C (JsonSerializerProxy_t9EA1960EEE85B284B72A8FBA416930328E54ADD7 * __this, const RuntimeMethod* method)
+{
+	{
+		JsonSerializer_t420752EC0878E5AF44C8DFEE8D06E70DFA328FBE * L_0 = __this->get__serializer_33();
+		NullCheck(L_0);
+		int32_t L_1;
+		L_1 = VirtualFuncInvoker0< int32_t >::Invoke(28 /* Newtonsoft.Json.Formatting Newtonsoft.Json.JsonSerializer::get_Formatting() */, L_0);
+		return L_1;
+	}
+}
+// System.Void Newtonsoft.Json.Serialization.JsonSerializerProxy::set_Formatting(Newtonsoft.Json.Formatting)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonSerializerProxy_set_Formatting_m33F77B7522C83B27E158F4E71AC2E42995D91F7C (JsonSerializerProxy_t9EA1960EEE85B284B72A8FBA416930328E54ADD7 * __this, int32_t ___value0, const RuntimeMethod* method)
+{
+	{
+		JsonSerializer_t420752EC0878E5AF44C8DFEE8D06E70DFA328FBE * L_0 = __this->get__serializer_33();
+		int32_t L_1 = ___value0;
+		NullCheck(L_0);
+		VirtualActionInvoker1< int32_t >::Invoke(29 /* System.Void Newtonsoft.Json.JsonSerializer::set_Formatting(Newtonsoft.Json.Formatting) */, L_0, L_1);
+		return;
+	}
+}
 // System.Boolean Newtonsoft.Json.Serialization.JsonSerializerProxy::get_CheckAdditionalContent()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool JsonSerializerProxy_get_CheckAdditionalContent_m613C5DCF22BF2FCDC4D66E3C7486603D749E40BC (JsonSerializerProxy_t9EA1960EEE85B284B72A8FBA416930328E54ADD7 * __this, const RuntimeMethod* method)
 {
@@ -14338,7 +14360,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool JsonSerializerProxy_get_CheckAdditionalC
 		JsonSerializer_t420752EC0878E5AF44C8DFEE8D06E70DFA328FBE * L_0 = __this->get__serializer_33();
 		NullCheck(L_0);
 		bool L_1;
-		L_1 = VirtualFuncInvoker0< bool >::Invoke(28 /* System.Boolean Newtonsoft.Json.JsonSerializer::get_CheckAdditionalContent() */, L_0);
+		L_1 = VirtualFuncInvoker0< bool >::Invoke(30 /* System.Boolean Newtonsoft.Json.JsonSerializer::get_CheckAdditionalContent() */, L_0);
 		return L_1;
 	}
 }
@@ -14349,7 +14371,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonSerializerProxy_set_CheckAdditionalC
 		JsonSerializer_t420752EC0878E5AF44C8DFEE8D06E70DFA328FBE * L_0 = __this->get__serializer_33();
 		bool L_1 = ___value0;
 		NullCheck(L_0);
-		VirtualActionInvoker1< bool >::Invoke(29 /* System.Void Newtonsoft.Json.JsonSerializer::set_CheckAdditionalContent(System.Boolean) */, L_0, L_1);
+		VirtualActionInvoker1< bool >::Invoke(31 /* System.Void Newtonsoft.Json.JsonSerializer::set_CheckAdditionalContent(System.Boolean) */, L_0, L_1);
 		return;
 	}
 }

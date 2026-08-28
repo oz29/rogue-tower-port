@@ -314,6 +314,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Application_get_isPlaying();
 		Register_UnityEngine_Application_get_isPlaying();
 
+		//System.String UnityEngine.Application::get_persistentDataPath()
+		void Register_UnityEngine_Application_get_persistentDataPath();
+		Register_UnityEngine_Application_get_persistentDataPath();
+
 		//System.String UnityEngine.Application::get_streamingAssetsPath()
 		void Register_UnityEngine_Application_get_streamingAssetsPath();
 		Register_UnityEngine_Application_get_streamingAssetsPath();
@@ -2232,6 +2236,14 @@ void RegisterAllStrippedInternalCalls()
 
 	//End Registrations for type : UnityEngine.Resources
 
+	//Start Registrations for type : UnityEngine.ResourcesAPIInternal
+
+		//UnityEngine.Object[] UnityEngine.ResourcesAPIInternal::FindObjectsOfTypeAll(System.Type)
+		void Register_UnityEngine_ResourcesAPIInternal_FindObjectsOfTypeAll();
+		Register_UnityEngine_ResourcesAPIInternal_FindObjectsOfTypeAll();
+
+	//End Registrations for type : UnityEngine.ResourcesAPIInternal
+
 	//Start Registrations for type : UnityEngine.SceneManagement.SceneManagerAPIInternal
 
 		//UnityEngine.AsyncOperation UnityEngine.SceneManagement.SceneManagerAPIInternal::LoadSceneAsyncNameIndexInternal_Injected(System.String,System.Int32,UnityEngine.SceneManagement.LoadSceneParameters&,System.Boolean)
@@ -2786,6 +2798,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_Transform_IsChildOf();
 		Register_UnityEngine_Transform_IsChildOf();
 
+		//System.Int32 UnityEngine.Transform::GetSiblingIndex()
+		void Register_UnityEngine_Transform_GetSiblingIndex();
+		Register_UnityEngine_Transform_GetSiblingIndex();
+
 		//System.Int32 UnityEngine.Transform::get_childCount()
 		void Register_UnityEngine_Transform_get_childCount();
 		Register_UnityEngine_Transform_get_childCount();
@@ -2805,6 +2821,10 @@ void RegisterAllStrippedInternalCalls()
 		//System.Void UnityEngine.Transform::SetParent(UnityEngine.Transform,System.Boolean)
 		void Register_UnityEngine_Transform_SetParent();
 		Register_UnityEngine_Transform_SetParent();
+
+		//System.Void UnityEngine.Transform::SetSiblingIndex(System.Int32)
+		void Register_UnityEngine_Transform_SetSiblingIndex();
+		Register_UnityEngine_Transform_SetSiblingIndex();
 
 		//System.Void UnityEngine.Transform::TransformDirection_Injected(UnityEngine.Vector3&,UnityEngine.Vector3&)
 		void Register_UnityEngine_Transform_TransformDirection_Injected();

@@ -16058,6 +16058,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Application_get_streamingAssetsPath
 	String_t* icallRetVal = _il2cpp_icall_func();
 	return icallRetVal;
 }
+// System.String UnityEngine.Application::get_persistentDataPath()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Application_get_persistentDataPath_mBD9C84D06693A9DEF2D9D2206B59D4BCF8A03463 (const RuntimeMethod* method)
+{
+	typedef String_t* (*Application_get_persistentDataPath_mBD9C84D06693A9DEF2D9D2206B59D4BCF8A03463_ftn) ();
+	static Application_get_persistentDataPath_mBD9C84D06693A9DEF2D9D2206B59D4BCF8A03463_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Application_get_persistentDataPath_mBD9C84D06693A9DEF2D9D2206B59D4BCF8A03463_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Application::get_persistentDataPath()");
+	String_t* icallRetVal = _il2cpp_icall_func();
+	return icallRetVal;
+}
 // System.Void UnityEngine.Application::OpenURL(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Application_OpenURL_m4AED08D5321E5395FAC8D91C2C428DBE60C5FD4E (String_t* ___url0, const RuntimeMethod* method)
 {
@@ -25440,6 +25450,23 @@ IL_003b:
 		NullCheck(L_17);
 		int32_t L_21;
 		L_21 = List_1_RemoveAll_m71F4A14E6DDB5FFBED2023A80EB6DB01F1ECEDE5(L_17, L_20, /*hidden argument*/List_1_RemoveAll_m71F4A14E6DDB5FFBED2023A80EB6DB01F1ECEDE5_RuntimeMethod_var);
+		__this->set_m_NeedsUpdate_3((bool)1);
+		return;
+	}
+}
+// System.Void UnityEngine.Events.InvokableCallList::Clear()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InvokableCallList_Clear_m882A8BFEC099790DB81C23AE556C0AF4D80045DD (InvokableCallList_tB7C66AA0C00F9C102C8BDC17A144E569AC7527A9 * __this, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&List_1_Clear_m6F3F8CEB0646EE63930FC3C9109427A56DBB8B54_RuntimeMethod_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		List_1_tE59E678A3E54798EF83514F25BE9C5E3AAC595BD * L_0 = __this->get_m_RuntimeCalls_1();
+		NullCheck(L_0);
+		List_1_Clear_m6F3F8CEB0646EE63930FC3C9109427A56DBB8B54(L_0, /*hidden argument*/List_1_Clear_m6F3F8CEB0646EE63930FC3C9109427A56DBB8B54_RuntimeMethod_var);
 		__this->set_m_NeedsUpdate_3((bool)1);
 		return;
 	}
