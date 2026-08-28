@@ -9,9 +9,9 @@ env:
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
 jobs:
-  build:
-    name: Build Unity & Package IPA
-    runs-on: macos-13
+  buildUnity:
+    name: 1. Build Unity to Xcode
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,10 +30,30 @@ jobs:
           unityVersion: 2021.1.11f1
           buildsPath: build
 
+      - name: Upload Xcode Project
+        uses: actions/upload-artifact@v4
+        with:
+          name: XcodeProject
+          path: build/iOS
+
+  packageIPA:
+    name: 2. Package IPA with Xcode
+    needs: buildUnity
+    runs-on: macos-14
+    steps:
+      - name: Download Xcode Project
+        uses: actions/download-artifact@v4
+        with:
+          name: XcodeProject
+          path: build/iOS
+
       - name: Build Xcode Archive & IPA
         run: |
           cd build/iOS
+          # Build app without code signing
           xcodebuild build -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -destination 'generic/platform=iOS' -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          
+          # Package into .ipa
           mkdir -p Payload
           cp -r build/Release-iphoneos/*.app Payload/
           zip -r RogueTower.ipa Payload
