@@ -7,9 +7,13 @@ jobs:
   activation:
     name: Request Activation File (.alf)
     runs-on: ubuntu-latest
+    container:
+      image: unityci/editor:ubuntu-2021.1.11f1-base-1
     steps:
-      - name: Request activation file
-        uses: game-ci/unity-request-activation-file@v2
+      - name: Generate manual activation file
+        run: |
+          unity-editor -batchmode -nographics -createManualActivationFile -logfile /dev/stdout || true
+          ls -la
 
       - name: Upload .alf artifact
         uses: actions/upload-artifact@v4
