@@ -1,0 +1,71 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  buildXcodeProject:
+    name: Build Unity iOS Project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-iOS-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-iOS-
+
+      - name: Build Unity Project to Xcode
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: iOS
+          unityVersion: 2021.1.11f1
+          buildsPath: build
+
+      - name: Upload Xcode Project Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XcodeProject
+          path: build/iOS
+
+  buildIPA:
+    name: Package IPA with Xcode
+    needs: buildXcodeProject
+    runs-on: macos-13
+    steps:
+      - name: Download Xcode Project
+        uses: actions/download-artifact@v4
+        with:
+          name: XcodeProject
+          path: build/iOS
+
+      - name: Build Xcode Archive & IPA
+        run: |
+          cd build/iOS
+          # Build app with xcodebuild without code signing
+          xcodebuild build -project Unity-iPhone.xcodeproj -scheme Unity-iPhone -destination 'generic/platform=iOS' -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          
+          # Package into .ipa
+          mkdir -p Payload
+          cp -r build/Release-iphoneos/Rogue\ Tower.app Payload/ || cp -r build/Release-iphoneos/*.app Payload/
+          zip -r RogueTower.ipa Payload
+          mv RogueTower.ipa ../../
+          
+      - name: Upload RogueTower.ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: RogueTower-iOS-IPA
+          path: RogueTower.ipa
