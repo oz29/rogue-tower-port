@@ -29,6 +29,8 @@ public class TerraformManager : MonoBehaviour
 	private GameObject lookoutPrefab;
 	private LayerMask grassLayerMask;
 
+	private float lastModeChangeTime;
+
 	private void Awake()
 	{
 		if (instance != null && instance != this)
@@ -52,7 +54,7 @@ public class TerraformManager : MonoBehaviour
 		GameObject[] all = Resources.FindObjectsOfTypeAll<GameObject>();
 		for (int i = 0; i < all.Length; i++)
 		{
-			if (all[i] != null && all[i].name == "Lookout" && all[i].GetComponentInChildren<MeshRenderer>() != null)
+			if (all[i] != null && all[i].name == "AbandonedTower" && all[i].GetComponentInChildren<MeshRenderer>() != null)
 			{
 				lookoutPrefab = all[i];
 				break;
@@ -98,6 +100,7 @@ public class TerraformManager : MonoBehaviour
 	public void SetMode(TerraformMode mode)
 	{
 		currentMode = mode;
+		lastModeChangeTime = Time.time;
 		if (ghostIndicator != null)
 		{
 			ghostIndicator.SetActive(mode != TerraformMode.Off);
@@ -150,18 +153,32 @@ public class TerraformManager : MonoBehaviour
 			return;
 		}
 
-		if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+		if (Time.time - lastModeChangeTime < 0.2f) return;
+
+		bool isAction = false;
+		Vector3 inputScreenPos = Input.mousePosition;
+
+		if (Input.touchCount > 0)
 		{
-			if (ghostIndicator != null && ghostIndicator.activeSelf) ghostIndicator.SetActive(false);
-			return;
+			Touch touch = Input.GetTouch(0);
+			inputScreenPos = touch.position;
+			if (touch.phase == TouchPhase.Began)
+			{
+				if (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+				{
+					isAction = true;
+				}
+			}
 		}
-		if (Input.touchCount > 0 && EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+		else if (Input.GetMouseButtonDown(0))
 		{
-			if (ghostIndicator != null && ghostIndicator.activeSelf) ghostIndicator.SetActive(false);
-			return;
+			if (EventSystem.current == null || !EventSystem.current.IsPointerOverGameObject())
+			{
+				isAction = true;
+			}
 		}
 
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay(inputScreenPos);
 		if (Physics.Raycast(ray, out RaycastHit hit, 2000f, grassLayerMask, QueryTriggerInteraction.Ignore))
 		{
 			int gridX = Mathf.RoundToInt(hit.point.x);
@@ -178,7 +195,7 @@ public class TerraformManager : MonoBehaviour
 				ghostIndicator.transform.position = new Vector3(gridX, targetY, gridZ);
 			}
 
-			if (Input.GetMouseButtonDown(0))
+			if (isAction)
 			{
 				if (currentMode == TerraformMode.Raise)
 				{
@@ -205,7 +222,8 @@ public class TerraformManager : MonoBehaviour
 		{
 			return lvl;
 		}
-		return Mathf.Max(0, Mathf.RoundToInt(fallbackY * 3f) - 1);
+		int fallbackLvl = Mathf.RoundToInt(fallbackY * 3f) - 1;
+		return Mathf.Clamp(fallbackLvl, 0, MAX_HEIGHT_LEVEL);
 	}
 
 	public void RaiseCell(Vector2Int gridKey, float currentHitY)
@@ -243,7 +261,14 @@ public class TerraformManager : MonoBehaviour
 		if (currentLvl <= MIN_HEIGHT_LEVEL) return;
 
 		int newLvl = currentLvl - 1;
-		cellElevationLevels[gridKey] = newLvl;
+		if (newLvl <= 0)
+		{
+			cellElevationLevels.Remove(gridKey);
+		}
+		else
+		{
+			cellElevationLevels[gridKey] = newLvl;
+		}
 		ApplyPillarElevation(gridKey, newLvl);
 
 		if (ObjectPool.instance != null)

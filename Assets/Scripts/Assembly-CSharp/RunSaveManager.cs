@@ -68,6 +68,7 @@ public class SavedTileData
 [Serializable]
 public class SavedTowerData
 {
+	public string prefabName;
 	public int towerType;
 	public float posX;
 	public float posY;
@@ -236,6 +237,7 @@ public class RunSaveManager : MonoBehaviour
 
 				SavedTowerData st = new SavedTowerData
 				{
+					prefabName = t.gameObject.name.Replace("(Clone)", "").Trim(),
 					towerType = (int)t.towerType,
 					posX = t.transform.position.x,
 					posY = t.transform.position.y,
@@ -305,6 +307,13 @@ public class RunSaveManager : MonoBehaviour
 			GameManager.instance.dotTick = new Vector3(data.dotTickX, data.dotTickY, data.dotTickZ);
 			GameManager.instance.UpdateHealthBar();
 
+			// Repopulate in-memory run lists so subsequent saves retain all tiles/cards
+			if (instance != null)
+			{
+				if (data.tiles != null) instance.currentRunTiles = new List<SavedTileData>(data.tiles);
+				if (data.pickedCards != null) instance.currentRunPickedCards = new List<string>(data.pickedCards);
+			}
+
 			if (ResourceManager.instance != null)
 			{
 				SetPrivateField(ResourceManager.instance, "gold", data.gold);
@@ -314,6 +323,7 @@ public class RunSaveManager : MonoBehaviour
 				ResourceManager.instance.manaBankBonusMana = data.manaBankBonusMana;
 				ResourceManager.instance.SetManaBar();
 				ResourceManager.instance.UpdateManaHUD();
+				InvokePrivateMethod(ResourceManager.instance, "UpdateResourceText");
 			}
 
 			if (MonsterManager.instance != null)
@@ -344,10 +354,9 @@ public class RunSaveManager : MonoBehaviour
 				{
 					for (int i = 0; i < allCards.Length; i++)
 					{
-						if (allCards[i].title == cardTitle)
+						if (allCards[i] != null && allCards[i].title == cardTitle)
 						{
 							allCards[i].Upgrade();
-							currentRunPickedCards.Add(cardTitle);
 							break;
 						}
 					}
@@ -371,21 +380,36 @@ public class RunSaveManager : MonoBehaviour
 			// 4. Restore placed towers
 			if (data.towers != null)
 			{
-				BuildButtonUI[] buttons = Resources.FindObjectsOfTypeAll<BuildButtonUI>();
-				Dictionary<int, GameObject> prefabMap = new Dictionary<int, GameObject>();
-				for (int i = 0; i < buttons.Length; i++)
+				GameObject[] allGOs = Resources.FindObjectsOfTypeAll<GameObject>();
+				Dictionary<string, GameObject> nameMap = new Dictionary<string, GameObject>();
+				Dictionary<int, GameObject> typeMap = new Dictionary<int, GameObject>();
+
+				for (int i = 0; i < allGOs.Length; i++)
 				{
-					TowerType tType = GetPrivateField<TowerType>(buttons[i], "myTowerType");
-					GameObject tObj = GetPrivateField<GameObject>(buttons[i], "tower");
-					if (tObj != null && !prefabMap.ContainsKey((int)tType))
+					GameObject go = allGOs[i];
+					if (go == null || go.name.Contains("(Clone)")) continue;
+
+					Tower tComp = go.GetComponent<Tower>();
+					if (tComp != null)
 					{
-						prefabMap.Add((int)tType, tObj);
+						if (!nameMap.ContainsKey(go.name)) nameMap.Add(go.name, go);
+						if (!typeMap.ContainsKey((int)tComp.towerType)) typeMap.Add((int)tComp.towerType, go);
 					}
 				}
 
 				foreach (SavedTowerData st in data.towers)
 				{
-					if (prefabMap.TryGetValue(st.towerType, out GameObject prefab))
+					GameObject prefab = null;
+					if (!string.IsNullOrEmpty(st.prefabName) && nameMap.TryGetValue(st.prefabName, out GameObject foundByName))
+					{
+						prefab = foundByName;
+					}
+					else if (typeMap.TryGetValue(st.towerType, out GameObject foundByType))
+					{
+						prefab = foundByType;
+					}
+
+					if (prefab != null)
 					{
 						Vector3 pos = new Vector3(st.posX, st.posY, st.posZ);
 						Quaternion rot = Quaternion.Euler(0f, st.rotY, 0f);
@@ -452,6 +476,12 @@ public class RunSaveManager : MonoBehaviour
 	{
 		var field = target.GetType().GetField(fieldName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
 		if (field != null) field.SetValue(target, value);
+	}
+
+	private static void InvokePrivateMethod(object target, string methodName)
+	{
+		var method = target.GetType().GetMethod(methodName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+		if (method != null) method.Invoke(target, null);
 	}
 
 	private static void SetPrivateProperty(object target, string propertyName, object value)
