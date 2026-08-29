@@ -18,7 +18,7 @@ public class TerraformManager : MonoBehaviour
 	public TerraformMode currentMode = TerraformMode.Off;
 
 	public const float HEIGHT_STEP = 0.3333333f;
-	public const int MAX_HEIGHT_LEVEL = 8;
+	public const int MAX_HEIGHT_LEVEL = 4;
 	public const int MIN_HEIGHT_LEVEL = 0;
 
 	private Dictionary<Vector2Int, GameObject> spawnedPillars = new Dictionary<Vector2Int, GameObject>();
@@ -202,6 +202,16 @@ public class TerraformManager : MonoBehaviour
 		cellElevationLevels[gridKey] = newLvl;
 		ApplyPillarElevation(gridKey, newLvl);
 
+		if (ObjectPool.instance != null)
+		{
+			DamageNumber dn = ObjectPool.instance.SpawnObject(ObjectPool.ObjectType.DamageNumber, new Vector3(gridKey.x, (newLvl + 1) * HEIGHT_STEP + 0.5f, gridKey.y), Quaternion.identity)?.GetComponent<DamageNumber>();
+			if (dn != null)
+			{
+				dn.SetText("+" + newLvl, "Green", 1f);
+				dn.SetHoldTime(0.25f);
+			}
+		}
+
 		if (SFXManager.instance != null)
 		{
 			SFXManager.instance.ButtonClick();
@@ -220,6 +230,17 @@ public class TerraformManager : MonoBehaviour
 		int newLvl = currentLvl - 1;
 		cellElevationLevels[gridKey] = newLvl;
 		ApplyPillarElevation(gridKey, newLvl);
+
+		if (ObjectPool.instance != null)
+		{
+			DamageNumber dn = ObjectPool.instance.SpawnObject(ObjectPool.ObjectType.DamageNumber, new Vector3(gridKey.x, (newLvl + 1) * HEIGHT_STEP + 0.5f, gridKey.y), Quaternion.identity)?.GetComponent<DamageNumber>();
+			if (dn != null)
+			{
+				string txt = newLvl > 0 ? ("+" + newLvl) : "0";
+				dn.SetText(txt, "Grey", 1f);
+				dn.SetHoldTime(0.25f);
+			}
+		}
 
 		if (SFXManager.instance != null)
 		{

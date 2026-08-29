@@ -363,10 +363,15 @@ public class RunSaveManager : MonoBehaviour
 				}
 			}
 
+			if (SpawnManager.instance != null)
+			{
+				SpawnManager.instance.UpdateSpawnPoints();
+			}
+
 			// 4. Restore placed towers
 			if (data.towers != null)
 			{
-				BuildButtonUI[] buttons = FindObjectsOfType<BuildButtonUI>();
+				BuildButtonUI[] buttons = Resources.FindObjectsOfTypeAll<BuildButtonUI>();
 				Dictionary<int, GameObject> prefabMap = new Dictionary<int, GameObject>();
 				for (int i = 0; i < buttons.Length; i++)
 				{
@@ -498,6 +503,7 @@ public class RunSaveManager : MonoBehaviour
 		btn.onClick.AddListener(() =>
 		{
 			loadSavedRunOnStart = true;
+			PlayerPrefs.SetInt("LoadSavedRunFlag", 1);
 			PlayerPrefs.SetInt("GameMode", data.gameMode);
 			PlayerPrefs.Save();
 			if (LevelLoader.instance != null)

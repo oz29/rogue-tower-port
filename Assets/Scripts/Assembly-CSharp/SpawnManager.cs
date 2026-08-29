@@ -433,7 +433,7 @@ public class SpawnManager : MonoBehaviour
 		currentEnemies.Add(component);
 	}
 
-	private void UpdateSpawnPoints()
+	public void UpdateSpawnPoints()
 	{
 		List<Waypoint> list = new List<Waypoint>();
 		List<Waypoint> list2 = new List<Waypoint>();

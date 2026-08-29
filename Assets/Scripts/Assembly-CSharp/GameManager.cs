@@ -101,7 +101,8 @@ public class GameManager : MonoBehaviour
 		{
 			base.gameObject.AddComponent<TerraformManager>();
 		}
-		if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+		bool shouldRestore = (RunSaveManager.loadSavedRunOnStart || PlayerPrefs.GetInt("LoadSavedRunFlag", 0) == 1) && RunSaveManager.HasSavedRun();
+		if (shouldRestore)
 		{
 			RunSaveData savedHeader = RunSaveManager.GetSavedRunHeader();
 			if (savedHeader != null)
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
 
 		if (gameMode == 1)
 		{
-			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			if (shouldRestore)
 			{
 				RunSaveData d = RunSaveManager.GetSavedRunHeader();
 				if (d != null) singleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
 		}
 		else if (gameMode == 2)
 		{
-			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			if (shouldRestore)
 			{
 				RunSaveData d = RunSaveManager.GetSavedRunHeader();
 				if (d != null) doubleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
@@ -151,7 +152,7 @@ public class GameManager : MonoBehaviour
 		}
 		else if (gameMode == 3)
 		{
-			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			if (shouldRestore)
 			{
 				RunSaveData d = RunSaveManager.GetSavedRunHeader();
 				if (d != null) tripleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
@@ -384,8 +385,11 @@ public class GameManager : MonoBehaviour
 		{
 			AchievementManager.instance.UnlockAchievement("TowerHealth30");
 		}
-		if (RunSaveManager.instance != null)
+		bool shouldRestore = (RunSaveManager.loadSavedRunOnStart || PlayerPrefs.GetInt("LoadSavedRunFlag", 0) == 1) && RunSaveManager.HasSavedRun();
+		if (shouldRestore && RunSaveManager.instance != null)
 		{
+			PlayerPrefs.SetInt("LoadSavedRunFlag", 0);
+			PlayerPrefs.Save();
 			RunSaveManager.instance.TryRestoreRun();
 		}
 	}
