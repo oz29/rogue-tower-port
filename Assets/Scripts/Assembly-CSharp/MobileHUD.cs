@@ -11,6 +11,9 @@ public class MobileHUD : MonoBehaviour
 	private GameObject continuousBtnObj;
 	private Text continuousBtnText;
 	private Image continuousBtnImg;
+	private GameObject terraformBtnObj;
+	private Text terraformBtnText;
+	private Image terraformBtnImg;
 
 	private void Awake()
 	{
@@ -126,8 +129,55 @@ public class MobileHUD : MonoBehaviour
 		continuousBtnText = continuousBtnObj.GetComponentInChildren<Text>();
 		continuousBtnImg = continuousBtnObj.GetComponent<Image>();
 
+		// 4. Height / Terraform Button (Right side, lower)
+		terraformBtnObj = CreateButton(
+			hudCanvasObj.transform,
+			"MobileTerraformButton",
+			"⛰️ Altura (OFF)",
+			new Vector2(1f, 0.5f),
+			new Vector2(1f, 0.5f),
+			new Vector2(-120f, -150f),
+			new Vector2(210f, 85f),
+			new Color(0.18f, 0.2f, 0.25f, 0.9f),
+			font,
+			21,
+			() =>
+			{
+				if (TerraformManager.instance != null)
+				{
+					TerraformManager.instance.ToggleMode();
+					UpdateTerraformButtonState();
+				}
+			}
+		);
+
+		terraformBtnText = terraformBtnObj.GetComponentInChildren<Text>();
+		terraformBtnImg = terraformBtnObj.GetComponent<Image>();
+
 		cancelBtnObj.SetActive(false);
 		continuousBtnObj.SetActive(false);
+	}
+
+	public void UpdateTerraformButtonState()
+	{
+		if (TerraformManager.instance != null && terraformBtnText != null && terraformBtnImg != null)
+		{
+			if (TerraformManager.instance.currentMode == TerraformManager.TerraformMode.Raise)
+			{
+				terraformBtnText.text = "🔺 Subir (+)";
+				terraformBtnImg.color = new Color(0.12f, 0.65f, 0.25f, 0.95f);
+			}
+			else if (TerraformManager.instance.currentMode == TerraformManager.TerraformMode.Lower)
+			{
+				terraformBtnText.text = "🔻 Bajar (-)";
+				terraformBtnImg.color = new Color(0.15f, 0.45f, 0.85f, 0.95f);
+			}
+			else
+			{
+				terraformBtnText.text = "⛰️ Altura (OFF)";
+				terraformBtnImg.color = new Color(0.18f, 0.2f, 0.25f, 0.9f);
+			}
+		}
 	}
 
 	private void UpdateContinuousButtonState()
@@ -225,6 +275,11 @@ public class MobileHUD : MonoBehaviour
 			if (menuBtnObj.activeSelf != (inGame && !isPaused))
 			{
 				menuBtnObj.SetActive(inGame && !isPaused);
+			}
+
+			if (terraformBtnObj != null && terraformBtnObj.activeSelf != (inGame && !isPaused))
+			{
+				terraformBtnObj.SetActive(inGame && !isPaused);
 			}
 		}
 	}

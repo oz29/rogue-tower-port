@@ -44,6 +44,15 @@ public class RunSaveData
 	public List<SavedTileData> tiles = new List<SavedTileData>();
 	public List<SavedTowerData> towers = new List<SavedTowerData>();
 	public List<string> pickedCards = new List<string>();
+	public List<SavedElevationData> elevations = new List<SavedElevationData>();
+}
+
+[Serializable]
+public class SavedElevationData
+{
+	public int gridX;
+	public int gridZ;
+	public int level;
 }
 
 [Serializable]
@@ -241,6 +250,19 @@ public class RunSaveManager : MonoBehaviour
 				data.towers.Add(st);
 			}
 
+			if (TerraformManager.instance != null)
+			{
+				foreach (var kvp in TerraformManager.instance.cellElevationLevels)
+				{
+					data.elevations.Add(new SavedElevationData
+					{
+						gridX = kvp.Key.x,
+						gridZ = kvp.Key.y,
+						level = kvp.Value
+					});
+				}
+			}
+
 			string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 			File.WriteAllText(SaveFilePath, json);
 			Debug.Log("[RunSaveManager] Run saved successfully at level " + data.level);
@@ -377,7 +399,18 @@ public class RunSaveManager : MonoBehaviour
 				}
 			}
 
-			// 5. Restore level/wave
+			// 5. Restore terraformed elevations
+			if (data.elevations != null && TerraformManager.instance != null)
+			{
+				foreach (SavedElevationData el in data.elevations)
+				{
+					Vector2Int key = new Vector2Int(el.gridX, el.gridZ);
+					TerraformManager.instance.cellElevationLevels[key] = el.level;
+					TerraformManager.instance.ApplyPillarElevation(key, el.level);
+				}
+			}
+
+			// 6. Restore level/wave
 			if (SpawnManager.instance != null)
 			{
 				SpawnManager.instance.level = data.level;

@@ -97,6 +97,10 @@ public class GameManager : MonoBehaviour
 		{
 			base.gameObject.AddComponent<RunSaveManager>();
 		}
+		if (Object.FindObjectOfType<TerraformManager>() == null)
+		{
+			base.gameObject.AddComponent<TerraformManager>();
+		}
 		gameMode = PlayerPrefs.GetInt("GameMode", 1);
 		if (gameMode == 1)
 		{
