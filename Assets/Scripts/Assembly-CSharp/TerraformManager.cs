@@ -26,6 +26,7 @@ public class TerraformManager : MonoBehaviour
 
 	private GameObject ghostIndicator;
 	private Material terrainMaterial;
+	private GameObject lookoutPrefab;
 	private LayerMask grassLayerMask;
 
 	private void Awake()
@@ -43,6 +44,20 @@ public class TerraformManager : MonoBehaviour
 	{
 		CreateGhostIndicator();
 		FindTerrainMaterial();
+		FindLookoutPrefab();
+	}
+
+	private void FindLookoutPrefab()
+	{
+		GameObject[] all = Resources.FindObjectsOfTypeAll<GameObject>();
+		for (int i = 0; i < all.Length; i++)
+		{
+			if (all[i] != null && all[i].name == "Lookout" && all[i].GetComponentInChildren<MeshRenderer>() != null)
+			{
+				lookoutPrefab = all[i];
+				break;
+			}
+		}
 	}
 
 	private void FindTerrainMaterial()
@@ -255,9 +270,45 @@ public class TerraformManager : MonoBehaviour
 	public void ApplyPillarElevation(Vector2Int gridKey, int level)
 	{
 		float targetTopY = (level + 1) * HEIGHT_STEP;
-		float pillarHeight = targetTopY;
 
-		if (!spawnedPillars.TryGetValue(gridKey, out GameObject pillar) || pillar == null)
+		if (spawnedPillars.TryGetValue(gridKey, out GameObject existingPillar) && existingPillar != null)
+		{
+			Destroy(existingPillar);
+			spawnedPillars.Remove(gridKey);
+		}
+
+		if (level == 0)
+		{
+			UpdateTowerOnCell(gridKey, targetTopY);
+			return;
+		}
+
+		if (lookoutPrefab == null)
+		{
+			FindLookoutPrefab();
+		}
+
+		GameObject pillar = null;
+		if (level == 4 && lookoutPrefab != null)
+		{
+			pillar = Instantiate(lookoutPrefab, new Vector3(gridKey.x, 0f, gridKey.y), Quaternion.identity);
+			pillar.name = "TerraformLookout_" + gridKey.x + "_" + gridKey.y;
+
+			Lookout lk = pillar.GetComponent<Lookout>();
+			if (lk != null) Destroy(lk);
+
+			BoxCollider bc = pillar.GetComponent<BoxCollider>();
+			if (bc == null) bc = pillar.AddComponent<BoxCollider>();
+			bc.center = new Vector3(0f, targetTopY - 0.1f, 0f);
+			bc.size = new Vector3(1f, 0.2f, 1f);
+
+			pillar.layer = LayerMask.NameToLayer("Grass");
+			foreach (Transform child in pillar.GetComponentsInChildren<Transform>())
+			{
+				child.gameObject.layer = LayerMask.NameToLayer("Grass");
+			}
+		}
+		else
 		{
 			pillar = GameObject.CreatePrimitive(PrimitiveType.Cube);
 			pillar.name = "TerraformPillar_" + gridKey.x + "_" + gridKey.y;
@@ -273,21 +324,13 @@ public class TerraformManager : MonoBehaviour
 				if (terrainMaterial != null) pillar.GetComponent<MeshRenderer>().sharedMaterial = terrainMaterial;
 			}
 
-			spawnedPillars[gridKey] = pillar;
+			pillar.transform.localScale = new Vector3(1f, targetTopY, 1f);
+			pillar.transform.position = new Vector3(gridKey.x, targetTopY / 2f, gridKey.y);
 		}
 
-		if (level == 0)
+		if (pillar != null)
 		{
-			if (pillar != null)
-			{
-				Destroy(pillar);
-				spawnedPillars.Remove(gridKey);
-			}
-		}
-		else
-		{
-			pillar.transform.localScale = new Vector3(1f, pillarHeight, 1f);
-			pillar.transform.position = new Vector3(gridKey.x, pillarHeight / 2f, gridKey.y);
+			spawnedPillars[gridKey] = pillar;
 		}
 
 		UpdateTowerOnCell(gridKey, targetTopY);
