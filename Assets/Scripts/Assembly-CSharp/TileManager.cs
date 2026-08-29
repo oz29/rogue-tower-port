@@ -237,4 +237,55 @@ public class TileManager : MonoBehaviour
 			Object.Instantiate(tilePlacementFXObject, vector + Vector3.up, Quaternion.identity).transform.localScale = Vector3.one * 7f;
 		}
 	}
+
+	public void RestoreTileExact(int posX, int posY, int eulerAngle, string prefabName)
+	{
+		List<GameObject> allPrefabs = new List<GameObject>();
+		if (Ltiles != null) allPrefabs.AddRange(Ltiles);
+		if (Ttiles != null) allPrefabs.AddRange(Ttiles);
+		if (Rtiles != null) allPrefabs.AddRange(Rtiles);
+		if (LTtiles != null) allPrefabs.AddRange(LTtiles);
+		if (LRtiles != null) allPrefabs.AddRange(LRtiles);
+		if (TRtiles != null) allPrefabs.AddRange(TRtiles);
+		if (LTRtiles != null) allPrefabs.AddRange(LTRtiles);
+		if (deadEndTiles != null) allPrefabs.AddRange(deadEndTiles);
+
+		GameObject matchedPrefab = null;
+		for (int i = 0; i < allPrefabs.Count; i++)
+		{
+			if (allPrefabs[i] != null && allPrefabs[i].name == prefabName)
+			{
+				matchedPrefab = allPrefabs[i];
+				break;
+			}
+		}
+		if (matchedPrefab == null && allPrefabs.Count > 0)
+		{
+			matchedPrefab = allPrefabs[0];
+		}
+
+		if (matchedPrefab == null) return;
+
+		Vector3 vector = new Vector3(posX - 50, 0f, posY - 50) * 7f;
+		GameObject obj = Object.Instantiate(matchedPrefab, vector, Quaternion.identity);
+		obj.transform.eulerAngles = new Vector3(0f, eulerAngle, 0f);
+		intArray[posX, posY] = 1;
+		TerrainTile component = obj.GetComponent<TerrainTile>();
+		tileArray[posX, posY] = component;
+		component.SetCardinalDirections();
+		UpdateIntArrayFromTile(component, posX, posY);
+
+		TerrainTile parentTile = null;
+		switch (eulerAngle)
+		{
+		case 0: parentTile = tileArray[posX, posY - 1]; break;
+		case 90: parentTile = tileArray[posX - 1, posY]; break;
+		case 180: parentTile = tileArray[posX, posY + 1]; break;
+		case 270: parentTile = tileArray[posX + 1, posY]; break;
+		}
+		if (parentTile != null)
+		{
+			component.ConnectToTile(parentTile);
+		}
+	}
 }

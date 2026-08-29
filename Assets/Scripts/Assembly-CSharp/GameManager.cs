@@ -101,10 +101,31 @@ public class GameManager : MonoBehaviour
 		{
 			base.gameObject.AddComponent<TerraformManager>();
 		}
-		gameMode = PlayerPrefs.GetInt("GameMode", 1);
+		if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+		{
+			RunSaveData savedHeader = RunSaveManager.GetSavedRunHeader();
+			if (savedHeader != null)
+			{
+				gameMode = savedHeader.gameMode;
+				PlayerPrefs.SetInt("GameMode", gameMode);
+			}
+		}
+		else
+		{
+			gameMode = PlayerPrefs.GetInt("GameMode", 1);
+		}
+
 		if (gameMode == 1)
 		{
-			singleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			{
+				RunSaveData d = RunSaveManager.GetSavedRunHeader();
+				if (d != null) singleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
+			}
+			else
+			{
+				singleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			}
 			singleStartTile.SetCardinalDirections();
 			tileManager.startTile = singleStartTile;
 			spawnManager.initialSpawns = singleStartWaypoints;
@@ -113,7 +134,15 @@ public class GameManager : MonoBehaviour
 		}
 		else if (gameMode == 2)
 		{
-			doubleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			{
+				RunSaveData d = RunSaveManager.GetSavedRunHeader();
+				if (d != null) doubleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
+			}
+			else
+			{
+				doubleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			}
 			doubleStartTile.SetCardinalDirections();
 			tileManager.startTile = doubleStartTile;
 			spawnManager.initialSpawns = doubleStartWaypoints;
@@ -122,7 +151,15 @@ public class GameManager : MonoBehaviour
 		}
 		else if (gameMode == 3)
 		{
-			tripleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			if (RunSaveManager.loadSavedRunOnStart && RunSaveManager.HasSavedRun())
+			{
+				RunSaveData d = RunSaveManager.GetSavedRunHeader();
+				if (d != null) tripleStartTile.transform.eulerAngles = new Vector3(0f, d.startTileRotationY, 0f);
+			}
+			else
+			{
+				tripleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
+			}
 			tripleStartTile.SetCardinalDirections();
 			tileManager.startTile = tripleStartTile;
 			spawnManager.initialSpawns = tripleStartWaypoints;

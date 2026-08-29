@@ -18,6 +18,7 @@ public class RunSaveData
 	public int maxMana;
 	public int manaGatherRate;
 	public int manaBankBonusMana;
+	public float startTileRotationY;
 
 	public float dotTickX;
 	public float dotTickY;
@@ -221,6 +222,11 @@ public class RunSaveManager : MonoBehaviour
 				data.pickedCards = new List<string>(instance.currentRunPickedCards);
 			}
 
+			if (TileManager.instance != null && TileManager.instance.startTile != null)
+			{
+				data.startTileRotationY = TileManager.instance.startTile.transform.eulerAngles.y;
+			}
+
 			// Collect all towers
 			Tower[] allTowers = FindObjectsOfType<Tower>();
 			for (int i = 0; i < allTowers.Length; i++)
@@ -353,7 +359,7 @@ public class RunSaveManager : MonoBehaviour
 			{
 				foreach (SavedTileData tile in data.tiles)
 				{
-					TileManager.instance.SpawnNewTile(tile.posX, tile.posY, tile.eulerAngle);
+					TileManager.instance.RestoreTileExact(tile.posX, tile.posY, tile.eulerAngle, tile.prefabName);
 				}
 			}
 
@@ -447,5 +453,76 @@ public class RunSaveManager : MonoBehaviour
 	{
 		var prop = target.GetType().GetProperty(propertyName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
 		if (prop != null && prop.CanWrite) prop.SetValue(target, value, null);
+	}
+
+	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+	private static void InitSceneWatcher()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		if (scene.name == "MainMenu")
+		{
+			CreateMainMenuContinueButton();
+		}
+	}
+
+	public static void CreateMainMenuContinueButton()
+	{
+		if (!HasSavedRun()) return;
+
+		RunSaveData data = GetSavedRunHeader();
+		if (data == null) return;
+
+		GameObject playBtn = GameObject.Find("Play");
+		if (playBtn == null) return;
+
+		if (GameObject.Find("MainMenuContinueButton") != null) return;
+
+		GameObject continueBtnObj = Instantiate(playBtn, playBtn.transform.parent);
+		continueBtnObj.name = "MainMenuContinueButton";
+		continueBtnObj.transform.SetAsFirstSibling();
+
+		RectTransform rt = continueBtnObj.GetComponent<RectTransform>();
+		RectTransform playRt = playBtn.GetComponent<RectTransform>();
+		if (rt != null && playRt != null)
+		{
+			rt.anchoredPosition = playRt.anchoredPosition + new Vector2(0f, 110f);
+			rt.sizeDelta = new Vector2(playRt.sizeDelta.x + 80f, playRt.sizeDelta.y + 10f);
+		}
+
+		Button btn = continueBtnObj.GetComponent<Button>();
+		btn.onClick.RemoveAllListeners();
+		btn.onClick.AddListener(() =>
+		{
+			loadSavedRunOnStart = true;
+			PlayerPrefs.SetInt("GameMode", data.gameMode);
+			PlayerPrefs.Save();
+			if (LevelLoader.instance != null)
+			{
+				LevelLoader.instance.LoadLevel("GameScene");
+			}
+			else
+			{
+				SceneManager.LoadScene("GameScene");
+			}
+		});
+
+		Image img = continueBtnObj.GetComponent<Image>();
+		if (img != null)
+		{
+			img.color = new Color(0.15f, 0.65f, 0.25f, 0.95f);
+		}
+
+		Text txt = continueBtnObj.GetComponentInChildren<Text>();
+		if (txt != null)
+		{
+			string modeName = data.gameMode == 1 ? "Single" : (data.gameMode == 2 ? "Double" : "Triple");
+			txt.text = $"▶ Continuar (Nivel {data.level} - {modeName})";
+			txt.fontSize = 24;
+			txt.color = Color.white;
+		}
 	}
 }
