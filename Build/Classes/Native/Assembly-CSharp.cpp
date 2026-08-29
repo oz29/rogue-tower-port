@@ -67,6 +67,10 @@ struct InterfaceActionInvoker11
 
 // System.Comparison`1<UnityEngine.EventSystems.RaycastResult>
 struct Comparison_1_t47C8B3739FFDD51D29B281A2FD2C36A57DDF9E38;
+// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,UnityEngine.GameObject>
+struct Dictionary_2_t2C664D906914CAECB7C05F2F72DEF000EFDFD83E;
+// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,System.Int32>
+struct Dictionary_2_tB9F035BC1C04F62B313D81F071CBAC5FD45A0532;
 // System.Collections.Generic.HashSet`1<Enemy>
 struct HashSet_1_t056F979C63FDE532356AAB93653CFA69C89084C5;
 // System.Collections.Generic.HashSet`1<UnityEngine.GameObject>
@@ -313,6 +317,8 @@ struct SpawnableObject_t28B420F79976DE062897CC522E5447A07B740B52;
 struct Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9;
 // System.String
 struct String_t;
+// TerraformManager
+struct TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595;
 // TerrainTile
 struct TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1;
 // UnityEngine.UI.Text
@@ -602,6 +608,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_MoveNext_mA06CAD1EDC229E48D2481F
 IL2CPP_EXTERN_C const RuntimeMethod* Enumerator_get_Current_mD937100D13F1BA038BC7083257D1E6607BF39184_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* GameObject_AddComponent_TisMobileHUD_tAD66A8ECF244632459752116981727A9776AD108_m2BF4F3C7B1EC31DEB82BB2587E78AA26F55974A1_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* GameObject_AddComponent_TisRunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3_m9C74FD82D71F1D5179200964E30253C043627DB2_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* GameObject_AddComponent_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m113093AC1ACD61057C619E9DA52AFBBA355BC66D_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* GameObject_GetComponent_TisBuildingGhost_tE029827AC3230F719C45C9A5E77C4DA469EEFBB0_m76A1C464B96087EA5F60949556E48B18F3C7997B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* GameObject_GetComponent_TisDamageNumber_t2B09FE57C9E53675BCB0A564399C0B1F2850FF66_m8A047AA032AC46D171970D03036324979459C620_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* GameObject_GetComponent_TisEnemy_tF0E5C8811BC93A523814C562C545DB3C1A755627_m8FD657E46EC7767B2AF2EA1250BFF9CD9AC0347D_RuntimeMethod_var;
@@ -634,6 +641,7 @@ IL2CPP_EXTERN_C const RuntimeMethod* List_1_get_Item_mC96458801B379866CFBE45708E
 IL2CPP_EXTERN_C const RuntimeMethod* List_1_get_Item_mFB39A0DCA2ABE853826629710F00744838A06CC6_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Object_FindObjectOfType_TisMobileHUD_tAD66A8ECF244632459752116981727A9776AD108_m8233B5C850F3D198106C33683D8F3AF6AFD73B9C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Object_FindObjectOfType_TisRunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3_m4E20218D77A0950E2D93E4364DA323DD082BF7A9_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* Object_FindObjectOfType_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m3E3B0AFD34A30BAB1E0D84006DA083002788C21E_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Object_Instantiate_TisGameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319_mF6943C67D79929CEF346FD96932E84EFCA9819B9_RuntimeMethod_var;
 
 struct BattleCryU5BU5D_tB9CFA455ED0D7D2B24124C627FDBB3795CA8FAEB;
@@ -2622,6 +2630,24 @@ public:
 
 public:
 	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(ObjectType_t79066197B1D4844A9464E7A893894CEACB715243, ___value___2)); }
+	inline int32_t get_value___2() const { return ___value___2; }
+	inline int32_t* get_address_of_value___2() { return &___value___2; }
+	inline void set_value___2(int32_t value)
+	{
+		___value___2 = value;
+	}
+};
+
+
+// TerraformManager/TerraformMode
+struct TerraformMode_tEC71EB4B5EDDDD00AB199CD5893081514582FF2D 
+{
+public:
+	// System.Int32 TerraformManager/TerraformMode::value__
+	int32_t ___value___2;
+
+public:
+	inline static int32_t get_offset_of_value___2() { return static_cast<int32_t>(offsetof(TerraformMode_tEC71EB4B5EDDDD00AB199CD5893081514582FF2D, ___value___2)); }
 	inline int32_t get_value___2() const { return ___value___2; }
 	inline int32_t* get_address_of_value___2() { return &___value___2; }
 	inline void set_value___2(int32_t value)
@@ -5514,6 +5540,12 @@ public:
 	Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 * ___continuousBtnText_9;
 	// UnityEngine.UI.Image MobileHUD::continuousBtnImg
 	Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * ___continuousBtnImg_10;
+	// UnityEngine.GameObject MobileHUD::terraformBtnObj
+	GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___terraformBtnObj_11;
+	// UnityEngine.UI.Text MobileHUD::terraformBtnText
+	Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 * ___terraformBtnText_12;
+	// UnityEngine.UI.Image MobileHUD::terraformBtnImg
+	Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * ___terraformBtnImg_13;
 
 public:
 	inline static int32_t get_offset_of_hudCanvasObj_5() { return static_cast<int32_t>(offsetof(MobileHUD_tAD66A8ECF244632459752116981727A9776AD108, ___hudCanvasObj_5)); }
@@ -5568,6 +5600,33 @@ public:
 	{
 		___continuousBtnImg_10 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___continuousBtnImg_10), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_terraformBtnObj_11() { return static_cast<int32_t>(offsetof(MobileHUD_tAD66A8ECF244632459752116981727A9776AD108, ___terraformBtnObj_11)); }
+	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * get_terraformBtnObj_11() const { return ___terraformBtnObj_11; }
+	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 ** get_address_of_terraformBtnObj_11() { return &___terraformBtnObj_11; }
+	inline void set_terraformBtnObj_11(GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * value)
+	{
+		___terraformBtnObj_11 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___terraformBtnObj_11), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_terraformBtnText_12() { return static_cast<int32_t>(offsetof(MobileHUD_tAD66A8ECF244632459752116981727A9776AD108, ___terraformBtnText_12)); }
+	inline Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 * get_terraformBtnText_12() const { return ___terraformBtnText_12; }
+	inline Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 ** get_address_of_terraformBtnText_12() { return &___terraformBtnText_12; }
+	inline void set_terraformBtnText_12(Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 * value)
+	{
+		___terraformBtnText_12 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___terraformBtnText_12), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_terraformBtnImg_13() { return static_cast<int32_t>(offsetof(MobileHUD_tAD66A8ECF244632459752116981727A9776AD108, ___terraformBtnImg_13)); }
+	inline Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * get_terraformBtnImg_13() const { return ___terraformBtnImg_13; }
+	inline Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C ** get_address_of_terraformBtnImg_13() { return &___terraformBtnImg_13; }
+	inline void set_terraformBtnImg_13(Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * value)
+	{
+		___terraformBtnImg_13 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___terraformBtnImg_13), (void*)value);
 	}
 };
 
@@ -7719,6 +7778,95 @@ public:
 	inline void set_spawned_9(bool value)
 	{
 		___spawned_9 = value;
+	}
+};
+
+
+// TerraformManager
+struct TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595  : public MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A
+{
+public:
+	// TerraformManager/TerraformMode TerraformManager::currentMode
+	int32_t ___currentMode_5;
+	// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,UnityEngine.GameObject> TerraformManager::spawnedPillars
+	Dictionary_2_t2C664D906914CAECB7C05F2F72DEF000EFDFD83E * ___spawnedPillars_9;
+	// System.Collections.Generic.Dictionary`2<UnityEngine.Vector2Int,System.Int32> TerraformManager::cellElevationLevels
+	Dictionary_2_tB9F035BC1C04F62B313D81F071CBAC5FD45A0532 * ___cellElevationLevels_10;
+	// UnityEngine.GameObject TerraformManager::ghostIndicator
+	GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___ghostIndicator_11;
+	// UnityEngine.Material TerraformManager::terrainMaterial
+	Material_t8927C00353A72755313F046D0CE85178AE8218EE * ___terrainMaterial_12;
+	// UnityEngine.LayerMask TerraformManager::grassLayerMask
+	LayerMask_t5FA647D8C300EA0621360CA4424717C3C73190A8  ___grassLayerMask_13;
+
+public:
+	inline static int32_t get_offset_of_currentMode_5() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___currentMode_5)); }
+	inline int32_t get_currentMode_5() const { return ___currentMode_5; }
+	inline int32_t* get_address_of_currentMode_5() { return &___currentMode_5; }
+	inline void set_currentMode_5(int32_t value)
+	{
+		___currentMode_5 = value;
+	}
+
+	inline static int32_t get_offset_of_spawnedPillars_9() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___spawnedPillars_9)); }
+	inline Dictionary_2_t2C664D906914CAECB7C05F2F72DEF000EFDFD83E * get_spawnedPillars_9() const { return ___spawnedPillars_9; }
+	inline Dictionary_2_t2C664D906914CAECB7C05F2F72DEF000EFDFD83E ** get_address_of_spawnedPillars_9() { return &___spawnedPillars_9; }
+	inline void set_spawnedPillars_9(Dictionary_2_t2C664D906914CAECB7C05F2F72DEF000EFDFD83E * value)
+	{
+		___spawnedPillars_9 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___spawnedPillars_9), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_cellElevationLevels_10() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___cellElevationLevels_10)); }
+	inline Dictionary_2_tB9F035BC1C04F62B313D81F071CBAC5FD45A0532 * get_cellElevationLevels_10() const { return ___cellElevationLevels_10; }
+	inline Dictionary_2_tB9F035BC1C04F62B313D81F071CBAC5FD45A0532 ** get_address_of_cellElevationLevels_10() { return &___cellElevationLevels_10; }
+	inline void set_cellElevationLevels_10(Dictionary_2_tB9F035BC1C04F62B313D81F071CBAC5FD45A0532 * value)
+	{
+		___cellElevationLevels_10 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___cellElevationLevels_10), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_ghostIndicator_11() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___ghostIndicator_11)); }
+	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * get_ghostIndicator_11() const { return ___ghostIndicator_11; }
+	inline GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 ** get_address_of_ghostIndicator_11() { return &___ghostIndicator_11; }
+	inline void set_ghostIndicator_11(GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * value)
+	{
+		___ghostIndicator_11 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___ghostIndicator_11), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_terrainMaterial_12() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___terrainMaterial_12)); }
+	inline Material_t8927C00353A72755313F046D0CE85178AE8218EE * get_terrainMaterial_12() const { return ___terrainMaterial_12; }
+	inline Material_t8927C00353A72755313F046D0CE85178AE8218EE ** get_address_of_terrainMaterial_12() { return &___terrainMaterial_12; }
+	inline void set_terrainMaterial_12(Material_t8927C00353A72755313F046D0CE85178AE8218EE * value)
+	{
+		___terrainMaterial_12 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___terrainMaterial_12), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_grassLayerMask_13() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595, ___grassLayerMask_13)); }
+	inline LayerMask_t5FA647D8C300EA0621360CA4424717C3C73190A8  get_grassLayerMask_13() const { return ___grassLayerMask_13; }
+	inline LayerMask_t5FA647D8C300EA0621360CA4424717C3C73190A8 * get_address_of_grassLayerMask_13() { return &___grassLayerMask_13; }
+	inline void set_grassLayerMask_13(LayerMask_t5FA647D8C300EA0621360CA4424717C3C73190A8  value)
+	{
+		___grassLayerMask_13 = value;
+	}
+};
+
+struct TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_StaticFields
+{
+public:
+	// TerraformManager TerraformManager::instance
+	TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * ___instance_4;
+
+public:
+	inline static int32_t get_offset_of_instance_4() { return static_cast<int32_t>(offsetof(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_StaticFields, ___instance_4)); }
+	inline TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * get_instance_4() const { return ___instance_4; }
+	inline TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 ** get_address_of_instance_4() { return &___instance_4; }
+	inline void set_instance_4(TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * value)
+	{
+		___instance_4 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___instance_4), (void*)value);
 	}
 };
 
@@ -11785,6 +11933,16 @@ inline RunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3 * Object_FindObj
 inline RunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3 * GameObject_AddComponent_TisRunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3_m9C74FD82D71F1D5179200964E30253C043627DB2 (GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * __this, const RuntimeMethod* method)
 {
 	return ((  RunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3 * (*) (GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 *, const RuntimeMethod*))GameObject_AddComponent_TisRuntimeObject_mF5562A0C81CEDFE1C295F7E16FC6904B5057CB2D_gshared)(__this, method);
+}
+// !!0 UnityEngine.Object::FindObjectOfType<TerraformManager>()
+inline TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * Object_FindObjectOfType_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m3E3B0AFD34A30BAB1E0D84006DA083002788C21E (const RuntimeMethod* method)
+{
+	return ((  TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * (*) (const RuntimeMethod*))Object_FindObjectOfType_TisRuntimeObject_mBE0814B07DA8DDD57407CC2F0C8051AEC27D34BC_gshared)(method);
+}
+// !!0 UnityEngine.GameObject::AddComponent<TerraformManager>()
+inline TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * GameObject_AddComponent_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m113093AC1ACD61057C619E9DA52AFBBA355BC66D (GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * __this, const RuntimeMethod* method)
+{
+	return ((  TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * (*) (GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 *, const RuntimeMethod*))GameObject_AddComponent_TisRuntimeObject_mF5562A0C81CEDFE1C295F7E16FC6904B5057CB2D_gshared)(__this, method);
 }
 // System.Void UnityEngine.Transform::Rotate(System.Single,System.Single,System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E (Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * __this, float ___xAngle0, float ___yAngle1, float ___zAngle2, const RuntimeMethod* method);
@@ -24773,8 +24931,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Awake_m22F42B2A82708B10F652C
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameManager_t9013B33302D2B40A51D0E8059DEE0DC180218AA1_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_AddComponent_TisMobileHUD_tAD66A8ECF244632459752116981727A9776AD108_m2BF4F3C7B1EC31DEB82BB2587E78AA26F55974A1_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_AddComponent_TisRunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3_m9C74FD82D71F1D5179200964E30253C043627DB2_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_AddComponent_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m113093AC1ACD61057C619E9DA52AFBBA355BC66D_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_FindObjectOfType_TisMobileHUD_tAD66A8ECF244632459752116981727A9776AD108_m8233B5C850F3D198106C33683D8F3AF6AFD73B9C_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_FindObjectOfType_TisRunSaveManager_tD077388D1240A9AEF01E531A5A084BC976A2BBD3_m4E20218D77A0950E2D93E4364DA323DD082BF7A9_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_FindObjectOfType_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m3E3B0AFD34A30BAB1E0D84006DA083002788C21E_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral5B042E0C7ABA235E6F9EA931B55815498594A222);
 		s_Il2CppMethodInitialized = true;
@@ -24830,160 +24990,182 @@ IL_002c:
 
 IL_0045:
 	{
-		// gameMode = PlayerPrefs.GetInt("GameMode", 1);
-		int32_t L_8;
-		L_8 = PlayerPrefs_GetInt_mDA4476C10FCFF55FC65816E5E519B0EAFCB2AC14(_stringLiteral5B042E0C7ABA235E6F9EA931B55815498594A222, 1, /*hidden argument*/NULL);
-		__this->set_gameMode_6(L_8);
-		// if (gameMode == 1)
-		int32_t L_9 = __this->get_gameMode_6();
-		if ((!(((uint32_t)L_9) == ((uint32_t)1))))
+		// if (Object.FindObjectOfType<TerraformManager>() == null)
+		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * L_8;
+		L_8 = Object_FindObjectOfType_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m3E3B0AFD34A30BAB1E0D84006DA083002788C21E(/*hidden argument*/Object_FindObjectOfType_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m3E3B0AFD34A30BAB1E0D84006DA083002788C21E_RuntimeMethod_var);
+		bool L_9;
+		L_9 = Object_op_Equality_mEE9EC7EB5C7DC3E95B94AB904E1986FC4D566D54(L_8, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
+		if (!L_9)
 		{
-			goto IL_00d4;
+			goto IL_005e;
+		}
+	}
+	{
+		// base.gameObject.AddComponent<TerraformManager>();
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_10;
+		L_10 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		NullCheck(L_10);
+		TerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595 * L_11;
+		L_11 = GameObject_AddComponent_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m113093AC1ACD61057C619E9DA52AFBBA355BC66D(L_10, /*hidden argument*/GameObject_AddComponent_TisTerraformManager_t37EA8B24D430382C94F6FE02332353645AC75595_m113093AC1ACD61057C619E9DA52AFBBA355BC66D_RuntimeMethod_var);
+	}
+
+IL_005e:
+	{
+		// gameMode = PlayerPrefs.GetInt("GameMode", 1);
+		int32_t L_12;
+		L_12 = PlayerPrefs_GetInt_mDA4476C10FCFF55FC65816E5E519B0EAFCB2AC14(_stringLiteral5B042E0C7ABA235E6F9EA931B55815498594A222, 1, /*hidden argument*/NULL);
+		__this->set_gameMode_6(L_12);
+		// if (gameMode == 1)
+		int32_t L_13 = __this->get_gameMode_6();
+		if ((!(((uint32_t)L_13) == ((uint32_t)1))))
+		{
+			goto IL_00ed;
 		}
 	}
 	{
 		// singleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_10 = __this->get_singleStartTile_7();
-		NullCheck(L_10);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_11;
-		L_11 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_10, /*hidden argument*/NULL);
-		int32_t L_12;
-		L_12 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
-		NullCheck(L_11);
-		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_11, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_12)))), (0.0f), /*hidden argument*/NULL);
-		// singleStartTile.SetCardinalDirections();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_13 = __this->get_singleStartTile_7();
-		NullCheck(L_13);
-		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_13, /*hidden argument*/NULL);
-		// tileManager.startTile = singleStartTile;
-		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_14 = __this->get_tileManager_4();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_15 = __this->get_singleStartTile_7();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_14 = __this->get_singleStartTile_7();
 		NullCheck(L_14);
-		L_14->set_startTile_14(L_15);
-		// spawnManager.initialSpawns = singleStartWaypoints;
-		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_16 = __this->get_spawnManager_5();
-		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_17 = __this->get_singleStartWaypoints_8();
-		NullCheck(L_16);
-		L_16->set_initialSpawns_5(L_17);
-		// doubleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_18 = __this->get_doubleStartTile_9();
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_15;
+		L_15 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_14, /*hidden argument*/NULL);
+		int32_t L_16;
+		L_16 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
+		NullCheck(L_15);
+		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_15, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_16)))), (0.0f), /*hidden argument*/NULL);
+		// singleStartTile.SetCardinalDirections();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_17 = __this->get_singleStartTile_7();
+		NullCheck(L_17);
+		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_17, /*hidden argument*/NULL);
+		// tileManager.startTile = singleStartTile;
+		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_18 = __this->get_tileManager_4();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_19 = __this->get_singleStartTile_7();
 		NullCheck(L_18);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_19;
-		L_19 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_18, /*hidden argument*/NULL);
-		NullCheck(L_19);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_19, (bool)0, /*hidden argument*/NULL);
-		// tripleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_20 = __this->get_tripleStartTile_11();
+		L_18->set_startTile_14(L_19);
+		// spawnManager.initialSpawns = singleStartWaypoints;
+		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_20 = __this->get_spawnManager_5();
+		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_21 = __this->get_singleStartWaypoints_8();
 		NullCheck(L_20);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_21;
-		L_21 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_20, /*hidden argument*/NULL);
-		NullCheck(L_21);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_21, (bool)0, /*hidden argument*/NULL);
+		L_20->set_initialSpawns_5(L_21);
+		// doubleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_22 = __this->get_doubleStartTile_9();
+		NullCheck(L_22);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_23;
+		L_23 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_22, /*hidden argument*/NULL);
+		NullCheck(L_23);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_23, (bool)0, /*hidden argument*/NULL);
+		// tripleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_24 = __this->get_tripleStartTile_11();
+		NullCheck(L_24);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_25;
+		L_25 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_24, /*hidden argument*/NULL);
+		NullCheck(L_25);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_25, (bool)0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
 
-IL_00d4:
+IL_00ed:
 	{
 		// else if (gameMode == 2)
-		int32_t L_22 = __this->get_gameMode_6();
-		if ((!(((uint32_t)L_22) == ((uint32_t)2))))
+		int32_t L_26 = __this->get_gameMode_6();
+		if ((!(((uint32_t)L_26) == ((uint32_t)2))))
 		{
-			goto IL_0152;
+			goto IL_016b;
 		}
 	}
 	{
 		// doubleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_23 = __this->get_doubleStartTile_9();
-		NullCheck(L_23);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_24;
-		L_24 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_23, /*hidden argument*/NULL);
-		int32_t L_25;
-		L_25 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
-		NullCheck(L_24);
-		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_24, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_25)))), (0.0f), /*hidden argument*/NULL);
-		// doubleStartTile.SetCardinalDirections();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_26 = __this->get_doubleStartTile_9();
-		NullCheck(L_26);
-		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_26, /*hidden argument*/NULL);
-		// tileManager.startTile = doubleStartTile;
-		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_27 = __this->get_tileManager_4();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_28 = __this->get_doubleStartTile_9();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_27 = __this->get_doubleStartTile_9();
 		NullCheck(L_27);
-		L_27->set_startTile_14(L_28);
-		// spawnManager.initialSpawns = doubleStartWaypoints;
-		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_29 = __this->get_spawnManager_5();
-		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_30 = __this->get_doubleStartWaypoints_10();
-		NullCheck(L_29);
-		L_29->set_initialSpawns_5(L_30);
-		// singleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_31 = __this->get_singleStartTile_7();
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_28;
+		L_28 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_27, /*hidden argument*/NULL);
+		int32_t L_29;
+		L_29 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
+		NullCheck(L_28);
+		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_28, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_29)))), (0.0f), /*hidden argument*/NULL);
+		// doubleStartTile.SetCardinalDirections();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_30 = __this->get_doubleStartTile_9();
+		NullCheck(L_30);
+		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_30, /*hidden argument*/NULL);
+		// tileManager.startTile = doubleStartTile;
+		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_31 = __this->get_tileManager_4();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_32 = __this->get_doubleStartTile_9();
 		NullCheck(L_31);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_32;
-		L_32 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_31, /*hidden argument*/NULL);
-		NullCheck(L_32);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_32, (bool)0, /*hidden argument*/NULL);
-		// tripleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_33 = __this->get_tripleStartTile_11();
+		L_31->set_startTile_14(L_32);
+		// spawnManager.initialSpawns = doubleStartWaypoints;
+		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_33 = __this->get_spawnManager_5();
+		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_34 = __this->get_doubleStartWaypoints_10();
 		NullCheck(L_33);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_34;
-		L_34 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_33, /*hidden argument*/NULL);
-		NullCheck(L_34);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_34, (bool)0, /*hidden argument*/NULL);
+		L_33->set_initialSpawns_5(L_34);
+		// singleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_35 = __this->get_singleStartTile_7();
+		NullCheck(L_35);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_36;
+		L_36 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_35, /*hidden argument*/NULL);
+		NullCheck(L_36);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_36, (bool)0, /*hidden argument*/NULL);
+		// tripleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_37 = __this->get_tripleStartTile_11();
+		NullCheck(L_37);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_38;
+		L_38 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_37, /*hidden argument*/NULL);
+		NullCheck(L_38);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_38, (bool)0, /*hidden argument*/NULL);
 		// }
 		return;
 	}
 
-IL_0152:
+IL_016b:
 	{
 		// else if (gameMode == 3)
-		int32_t L_35 = __this->get_gameMode_6();
-		if ((!(((uint32_t)L_35) == ((uint32_t)3))))
+		int32_t L_39 = __this->get_gameMode_6();
+		if ((!(((uint32_t)L_39) == ((uint32_t)3))))
 		{
-			goto IL_01cf;
+			goto IL_01e8;
 		}
 	}
 	{
 		// tripleStartTile.transform.Rotate(0f, 90 * Random.Range(-1, 3), 0f);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_36 = __this->get_tripleStartTile_11();
-		NullCheck(L_36);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_37;
-		L_37 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_36, /*hidden argument*/NULL);
-		int32_t L_38;
-		L_38 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
-		NullCheck(L_37);
-		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_37, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_38)))), (0.0f), /*hidden argument*/NULL);
-		// tripleStartTile.SetCardinalDirections();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_39 = __this->get_tripleStartTile_11();
-		NullCheck(L_39);
-		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_39, /*hidden argument*/NULL);
-		// tileManager.startTile = tripleStartTile;
-		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_40 = __this->get_tileManager_4();
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_41 = __this->get_tripleStartTile_11();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_40 = __this->get_tripleStartTile_11();
 		NullCheck(L_40);
-		L_40->set_startTile_14(L_41);
-		// spawnManager.initialSpawns = tripleStartWaypoints;
-		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_42 = __this->get_spawnManager_5();
-		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_43 = __this->get_tripleStartWaypoints_12();
-		NullCheck(L_42);
-		L_42->set_initialSpawns_5(L_43);
-		// doubleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_44 = __this->get_doubleStartTile_9();
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_41;
+		L_41 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_40, /*hidden argument*/NULL);
+		int32_t L_42;
+		L_42 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A((-1), 3, /*hidden argument*/NULL);
+		NullCheck(L_41);
+		Transform_Rotate_mA3AE6D55AA9CC88A8F03C2B0B7CB3DB45ABA6A8E(L_41, (0.0f), ((float)((float)((int32_t)il2cpp_codegen_multiply((int32_t)((int32_t)90), (int32_t)L_42)))), (0.0f), /*hidden argument*/NULL);
+		// tripleStartTile.SetCardinalDirections();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_43 = __this->get_tripleStartTile_11();
+		NullCheck(L_43);
+		TerrainTile_SetCardinalDirections_mA7A685082F016EB25BA85BB28272C22BFD9C1D10(L_43, /*hidden argument*/NULL);
+		// tileManager.startTile = tripleStartTile;
+		TileManager_tC496D6549F53F666F5DB1185DC421CA5830DDD9A * L_44 = __this->get_tileManager_4();
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_45 = __this->get_tripleStartTile_11();
 		NullCheck(L_44);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_45;
-		L_45 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_44, /*hidden argument*/NULL);
-		NullCheck(L_45);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_45, (bool)0, /*hidden argument*/NULL);
-		// singleStartTile.gameObject.SetActive(value: false);
-		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_46 = __this->get_singleStartTile_7();
+		L_44->set_startTile_14(L_45);
+		// spawnManager.initialSpawns = tripleStartWaypoints;
+		SpawnManager_t1E3383A95511E3FC4496CA224E61F0409C7FA6BE * L_46 = __this->get_spawnManager_5();
+		WaypointU5BU5D_t73DFE51009447D368E5E4C45061C830500678E89* L_47 = __this->get_tripleStartWaypoints_12();
 		NullCheck(L_46);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_47;
-		L_47 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_46, /*hidden argument*/NULL);
-		NullCheck(L_47);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_47, (bool)0, /*hidden argument*/NULL);
+		L_46->set_initialSpawns_5(L_47);
+		// doubleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_48 = __this->get_doubleStartTile_9();
+		NullCheck(L_48);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_49;
+		L_49 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_48, /*hidden argument*/NULL);
+		NullCheck(L_49);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_49, (bool)0, /*hidden argument*/NULL);
+		// singleStartTile.gameObject.SetActive(value: false);
+		TerrainTile_t0E03FFEC6A18E6AF060C27D4D35BEB5A5F991DF1 * L_50 = __this->get_singleStartTile_7();
+		NullCheck(L_50);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_51;
+		L_51 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_50, /*hidden argument*/NULL);
+		NullCheck(L_51);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_51, (bool)0, /*hidden argument*/NULL);
 	}
 
-IL_01cf:
+IL_01e8:
 	{
 		// }
 		return;
